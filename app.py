@@ -169,7 +169,7 @@ with st.sidebar:
             if all(col in df.columns for col in required_cols):
                 # 数据类型转换与清洗
                 df["星期"] = pd.to_numeric(df["星期"], errors="coerce").fillna(0).astype(int)
-                df = df[df["星期"] >= 1 & df["星期"] <= 7]  # 过滤无效星期
+                df = df[(df["星期"] >= 1) & (df["星期"] <= 7)]  # 修正逻辑运算优先级
                 st.session_state.course_data = df
                 st.success("✅ 课程表导入成功！")
             else:
